@@ -109,7 +109,7 @@ class _FirstScreenState extends State<FirstScreen> {
                         PageTransition(
                           child: const MainScreen(),
                           type: PageTransitionType.bottomToTop,
-                          duration: const Duration(seconds: 2)
+                          duration: const Duration(seconds: 1)
                         ));
                   },
                   child: Container(

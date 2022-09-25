@@ -603,8 +603,7 @@ class AmplopModal extends StatelessWidget {
             height: 30,
           ),
           Container(
-            margin: EdgeInsets.only(
-                top: 30, bottom: MediaQuery.of(context).padding.bottom + 20),
+            margin: const EdgeInsets.only(top: 30, bottom: 20),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
                 color: AppColors.primaryDarkColor.withOpacity(0.1),
@@ -634,6 +633,9 @@ class AmplopModal extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).padding.bottom,
           ),
         ],
       ),
