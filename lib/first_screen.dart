@@ -54,7 +54,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 Text(
                   'you are invited',
                   style: GoogleFonts.playfairDisplay(
-                    fontSize: 20,
+                    fontSize: 16,
                     color: AppColors.white,
                   ),
                 ),

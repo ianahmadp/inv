@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'configs/themes/app_colors.dart';
+import 'configs/themes/app_text_style.dart';
 import 'maps_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -42,6 +43,7 @@ class _MainScreenState extends State<MainScreen> {
                     PlaceView(),
                     NoteSectionMahaSuciView(),
                     AmplopView(),
+                    CommentView(),
                   ],
                 ),
               ),
@@ -439,7 +441,7 @@ class PlaceView extends StatelessWidget {
           ),
           Container(
             height: 34,
-            width: 100,
+            width: 120,
             decoration: BoxDecoration(
                 color: AppColors.white.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(22),
@@ -535,7 +537,7 @@ class AmplopView extends StatelessWidget {
                       topRight: Radius.circular(25)),
                 ),
                 builder: (context) {
-                  return AmplopModal();
+                  return const AmplopModal();
                 },
               );
             },
@@ -572,7 +574,7 @@ class AmplopModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: AppColors.primaryDarkColor,
+        color: AppColors.white,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25), topRight: Radius.circular(25)),
       ),
@@ -582,62 +584,79 @@ class AmplopModal extends StatelessWidget {
         children: [
           Container(
             height: 6,
-            width: 80,
+            width: 75,
             margin: const EdgeInsets.only(bottom: 34, top: 8),
             decoration: BoxDecoration(
-              color: AppColors.textPrimary.withOpacity(0.2),
+              color: AppColors.textPrimary.withOpacity(0.1),
               borderRadius: BorderRadius.circular(3),
             ),
           ),
           Row(
             children: [
-              _itemRekening("Ian Ahmad P.", "0526919856"),
-              _itemRekening("Wenty Meliany", "5875211568"),
+              _itemRekening(
+                  "Wenty Meliany", "5875211568", 'assets/images/logo_bca.png'),
+              _itemRekening(
+                  "Ian Ahmad P", "0526919856", 'assets/images/logo_bni.png'),
             ],
           ),
           const SizedBox(
             height: 30,
           ),
-          Text(
-            'kirim hadiah ke-',
-            style: GoogleFonts.playfairDisplay(
-              fontSize: 16,
-              color: AppColors.white,
+          Container(
+            margin: EdgeInsets.only(
+                top: 30, bottom: MediaQuery.of(context).padding.bottom),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+                color: AppColors.primaryDarkColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(16)),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'Kirim hadiah ke alamat',
+                  style: GoogleFonts.playfairDisplay(
+                    fontSize: 16,
+                    // color: AppColors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Perumahan Graha Cisait Blok A 22 No 15, RT 005 RW 006, Kec. Kragilan, Kab. Serang, Banten',
+                  style: GoogleFonts.croissantOne(
+                    fontSize: 14,
+                    // color: AppColors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            'Perumahan Graha Cisait Blok A 22 No 15, RT 005 RW 006, Kec. Kragilan, Kab. Serang, Banten',
-            style: GoogleFonts.croissantOne(
-              fontSize: 14,
-              color: AppColors.white,
-            ),
-            textAlign: TextAlign.center,
           ),
         ],
       ),
     );
   }
 
-  Widget _itemRekening(String name, number) {
+  Widget _itemRekening(String name, number, logoBank) {
     return Expanded(
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            height: 60,
-            width: 100,
-            margin: EdgeInsets.only(bottom: 16),
-            color: AppColors.primaryColor.withOpacity(0.4),
+            height: 40,
+            margin: const EdgeInsets.only(bottom: 8),
+            child: Image.asset(logoBank),
           ),
           Text(
             number,
             style: GoogleFonts.croissantOne(
               fontSize: 16,
-              color: AppColors.white,
+              letterSpacing: 1.5,
+              // color: AppColors.white,
             ),
             textAlign: TextAlign.center,
           ),
@@ -645,7 +664,7 @@ class AmplopModal extends StatelessWidget {
             'a/n',
             style: GoogleFonts.playfairDisplay(
               fontSize: 16,
-              color: AppColors.white,
+              // color: AppColors.white,
             ),
             textAlign: TextAlign.center,
           ),
@@ -653,9 +672,245 @@ class AmplopModal extends StatelessWidget {
             name,
             style: GoogleFonts.croissantOne(
               fontSize: 16,
-              color: AppColors.white,
+              // color: AppColors.white,
             ),
             textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CommentView extends StatefulWidget {
+  const CommentView({Key? key}) : super(key: key);
+
+  @override
+  _CommentViewState createState() => _CommentViewState();
+}
+
+class _CommentViewState extends State<CommentView> {
+  @override
+  Widget build(BuildContext context) {
+    final nameController = TextEditingController();
+    final commentController = TextEditingController();
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 24),
+      decoration: const BoxDecoration(
+        color: AppColors.primaryDarkColor,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(24),
+          topLeft: Radius.circular(24),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'Tulis ucapan dan doa mu',
+            style: GoogleFonts.croissantOne(
+              fontSize: 18,
+              color: AppColors.white,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Semoga doa yang tertulis senantiasa kembali kepada yang mendoakan dan dilipat gandakan oleh Allah. Amin yaa Rab.',
+            style: GoogleFonts.playfairDisplay(
+              fontSize: 14,
+              color: AppColors.white,
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            'Nama Lengkap',
+            style: GoogleFonts.playfairDisplay(
+              fontSize: 12,
+              color: AppColors.white,
+            ),
+          ),
+          const SizedBox(height: 5),
+          TextFormField(
+            controller: nameController,
+            textCapitalization: TextCapitalization.sentences,
+            autocorrect: false,
+            style: GoogleFonts.playfairDisplay(
+              fontSize: 14,
+              color: AppColors.textPrimary,
+            ),
+            // maxLines: obscureText ? 1 : maxLines ?? 1,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: AppColors.white.withOpacity(0.7),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              hintText: 'Tuliskan nama kamu',
+              hintStyle: GoogleFonts.playfairDisplay(
+                fontSize: 14,
+                color: AppColors.textPrimary.withOpacity(0.5),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                    width: 1, color: AppColors.white.withOpacity(0.2)),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(width: 1, color: AppColors.white),
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+              focusedErrorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.redPrimary, width: 1),
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+              errorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.redPrimary, width: 1),
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'Ucapan / Doa',
+            style: GoogleFonts.playfairDisplay(
+              fontSize: 12,
+              color: AppColors.white,
+            ),
+          ),
+          const SizedBox(height: 5),
+          TextFormField(
+            controller: commentController,
+            textCapitalization: TextCapitalization.sentences,
+            autocorrect: false,
+            style: GoogleFonts.playfairDisplay(
+              fontSize: 14,
+              color: AppColors.textPrimary,
+            ),
+            maxLines: 5,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: AppColors.white.withOpacity(0.7),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+              hintText: 'Tuliskan ucapan atau doa',
+              hintStyle: GoogleFonts.playfairDisplay(
+                fontSize: 14,
+                color: AppColors.textPrimary.withOpacity(0.5),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                    width: 1, color: AppColors.white.withOpacity(0.2)),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(width: 1, color: AppColors.white),
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+              focusedErrorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.redPrimary, width: 1),
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+              errorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.redPrimary, width: 1),
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+            ),
+          ),
+          Container(
+            height: 46,
+            margin: EdgeInsets.only(top: 20),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: AppColors.primaryDark2Color,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Center(
+                child: Text(
+              'Kirim',
+              style: GoogleFonts.playfairDisplay(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: AppColors.white,
+              ),
+            )),
+          ),
+          const SizedBox(height: 40),
+          Text(
+            'Ucapan dan doa sahabat',
+            style: GoogleFonts.croissantOne(
+              fontSize: 18,
+              color: AppColors.white,
+            ),
+          ),
+          Text(
+            'Terima kasih atas ucapan dan doa sahabat semuanya.',
+            style: GoogleFonts.playfairDisplay(
+              fontSize: 14,
+              color: AppColors.white,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            height: MediaQuery.of(context).size.width,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) => itemComment(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget itemComment() {
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+          border: Border(
+              bottom: BorderSide(
+        color: AppColors.textPrimary.withOpacity(0.1),
+        width: 1,
+      ))),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.favorite,
+            color: AppColors.primaryColor,
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'Randyka Rusnian',
+                  style: GoogleFonts.playfairDisplay(
+                    fontSize: 14,
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Alhamdulillah, semoga dilancarkan sampai hari H. Menjadi keluarga sakinah, mawaddah, warohmah. Ammin yaa robbal alamin.',
+                  style: GoogleFonts.playfairDisplay(
+                    fontSize: 14,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
