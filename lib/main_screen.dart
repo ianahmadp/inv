@@ -604,7 +604,7 @@ class AmplopModal extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.only(
-                top: 30, bottom: MediaQuery.of(context).padding.bottom),
+                top: 30, bottom: MediaQuery.of(context).padding.bottom + 20),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
                 color: AppColors.primaryDarkColor.withOpacity(0.1),

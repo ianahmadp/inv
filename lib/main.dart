@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: AppColors.primaryColor
+        primaryColor: AppColors.primaryDark2Color
       ),
       debugShowCheckedModeBanner: false,
       home: const FirstScreen(),
