@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -6,13 +9,23 @@ import 'configs/themes/app_colors.dart';
 import 'main_screen.dart';
 
 class FirstScreen extends StatefulWidget {
-  const FirstScreen({Key? key}) : super(key: key);
+  String? toName;
+  FirstScreen({Key? key, this.toName}) : super(key: key);
 
   @override
   _FirstScreenState createState() => _FirstScreenState();
 }
 
 class _FirstScreenState extends State<FirstScreen> {
+  void getParams() {
+    var uri = Uri.dataFromString(window.location.href);
+    Map<String, String> params = uri.queryParameters;
+    var origin = params['origin'];
+    var destiny = params['destiny'];
+    print(origin);
+    print(destiny);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +57,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   ),
                 ),
                 Text(
-                  'Randyka Rusnian',
+                  widget.toName ?? '-',
                   style: GoogleFonts.playfairDisplay(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -104,13 +117,18 @@ class _FirstScreenState extends State<FirstScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(
-                        context,
-                        PageTransition(
-                          child: const MainScreen(),
-                          type: PageTransitionType.bottomToTop,
-                          duration: const Duration(seconds: 1)
-                        ));
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     PageTransition(
+                    //       child: const MainScreen(),
+                    //       type: PageTransitionType.bottomToTop,
+                    //       duration: const Duration(seconds: 1)
+                    //     ));
+                    // getParams();
+                    // print(Uri.base.queryParameters.toString());
+                    // context.go('/family/datacok');
+                    // context.goNamed('main', params: {'fid': 'randika'});
+                    context.go('/main');
                   },
                   child: Container(
                     height: 40,
