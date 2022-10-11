@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:undangan/first_screen.dart';
 import 'package:undangan/main_screen.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Undangan Dongs',
+      title: 'Wenty & Ian',
       routeInformationProvider: _router.routeInformationProvider,
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
@@ -27,11 +28,11 @@ class MyApp extends StatelessWidget {
   }
 
   late final GoRouter _router = GoRouter(
+    errorBuilder: (context, state) => FirstScreen(),
     routes: <GoRoute>[
       GoRoute(
           path: '/',
-          builder: (BuildContext context, GoRouterState state) =>
-              const IntroScreen(),
+          builder: (BuildContext context, GoRouterState state) => FirstScreen(),
           routes: <GoRoute>[
             GoRoute(
               name: 'to',
@@ -47,11 +48,12 @@ class MyApp extends StatelessWidget {
         name: 'main',
         path: '/main',
         builder: (BuildContext context, GoRouterState state) {
-          return MainScreen();
+          return const MainScreen();
         },
       ),
     ],
   );
+
 }
 
 class IntroScreen extends StatelessWidget {

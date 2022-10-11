@@ -5,13 +5,29 @@ import 'configs/themes/app_colors.dart';
 import 'maps_screen.dart';
 
 class MainScreen extends StatefulWidget {
-   MainScreen({Key? key}) : super(key: key);
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
+  late ScrollController _controller;
+  double pixels = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = ScrollController();
+    _controller.addListener(() {
+      setState(() {
+        pixels = _controller.position.pixels;
+        print(_controller.position.pixels);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
