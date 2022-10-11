@@ -29,7 +29,7 @@ class _FirstScreenState extends State<FirstScreen> {
   double opacityButton = 0.0;
   EdgeInsets paddingButton = const EdgeInsets.only(top: 30);
 
-  startAnimation() async {
+  void startAnimation() async {
     await Future.delayed(const Duration(seconds: 1));
     setState(() {
       paddingWeddingInvitation = const EdgeInsets.only(top: 30);
@@ -48,6 +48,27 @@ class _FirstScreenState extends State<FirstScreen> {
       opacityButton = 1;
       paddingButton = EdgeInsets.zero;
     });
+  }
+
+  void toMainScreen() async {
+    setState(() {
+      paddingWeddingInvitation = const EdgeInsets.only(top: 0);
+      opacityWeddingInvitation = 0;
+    });
+    await Future.delayed(const Duration(milliseconds: 500));
+    setState(() {
+      opacityWentyIan = 0;
+    });
+    await Future.delayed(const Duration(milliseconds: 300));
+    setState(() {
+      opacityDear = 0;
+    });
+    await Future.delayed(const Duration(milliseconds: 200));
+    setState(() {
+      opacityButton = 0;
+    });
+    await Future.delayed(const Duration(seconds: 1));
+    context.go('/main');
   }
 
   @override
@@ -184,8 +205,7 @@ class _FirstScreenState extends State<FirstScreen> {
                           padding: paddingButton,
                           duration: const Duration(seconds: 1),
                           child: GestureDetector(
-                            onTap: () => context.go('/main'),
-                            // onTap: ()=> setOpacity(),
+                            onTap: () => toMainScreen(),
                             child: Container(
                               height: 40,
                               width: 160,

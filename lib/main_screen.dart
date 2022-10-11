@@ -128,14 +128,16 @@ class HeaderView extends StatelessWidget {
                 letterSpacing: -3,
               ),
             ),
+            const SizedBox(width: 3),
             Text(
-              ' & ',
+              '&',
               style: GoogleFonts.playfairDisplay(
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
                 color: AppColors.white,
               ),
             ),
+            const SizedBox(width: 3),
             Text(
               'Ian',
               style: GoogleFonts.croissantOne(
