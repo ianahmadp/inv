@@ -27,7 +27,7 @@ class _FirstScreenState extends State<FirstScreen> {
   double opacityDear = 0.0;
 
   double opacityButton = 0.0;
-  EdgeInsets paddingButton = const EdgeInsets.only(top: 40);
+  EdgeInsets paddingButton = const EdgeInsets.only(top: 30);
 
   startAnimation() async {
     await Future.delayed(const Duration(seconds: 1));
@@ -174,7 +174,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 Container(
                   height: 70,
                   width: 160,
-                  margin: EdgeInsets.only(top: 50),
+                  margin: EdgeInsets.only(top: 60),
                   child: Stack(
                     children: [
                       AnimatedOpacity(
