@@ -47,7 +47,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
     await Future.delayed(const Duration(milliseconds: 500));
     setState(() {
       opacityWentyIan = 1;
-      paddingWentyIan = EdgeInsets.zero;
+      paddingWentyIan = EdgeInsets.only(top: 0);
     });
     await Future.delayed(const Duration(milliseconds: 300));
     setState(() {
@@ -96,7 +96,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 40,
+                  height: 16,
                 ),
                 AnimatedOpacity(
                   opacity: opacityBismillah,
@@ -117,7 +117,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                     padding: paddingTextHeader,
                     duration: const Duration(milliseconds: 800),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Text(
                         "Dengan memohon Ridho & Rahmat Allah subhanahu wa ta'ala, kami mengundang bapak/ibu dan saudara/i dalam acara pernikahan kami",
                         style: GoogleFonts.playfairDisplay(
@@ -247,7 +247,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 80,
                     child: AnimatedOpacity(
                       duration: const Duration(milliseconds: 800),
                       opacity: opacityWentyIan,
@@ -260,7 +260,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                             Text(
                               'Wenty',
                               style: GoogleFonts.croissantOne(
-                                fontSize: 60,
+                                fontSize: 54,
                                 fontWeight: FontWeight.normal,
                                 color: AppColors.primaryColor,
                                 letterSpacing: -3,
@@ -270,7 +270,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                             Text(
                               '&',
                               style: GoogleFonts.playfairDisplay(
-                                fontSize: 40,
+                                fontSize: 30,
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.white,
                               ),
@@ -279,7 +279,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                             Text(
                               'Ian',
                               style: GoogleFonts.croissantOne(
-                                fontSize: 60,
+                                fontSize: 54,
                                 fontWeight: FontWeight.normal,
                                 color: AppColors.primaryColor,
                                 letterSpacing: -3,
@@ -291,10 +291,10 @@ class _HeaderScreenState extends State<HeaderScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 12,
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 80,
                     child: AnimatedOpacity(
                       duration: const Duration(milliseconds: 800),
                       opacity: opacityDate,

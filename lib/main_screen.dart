@@ -53,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
           image: isLoadBg
               ? null
               : const DecorationImage(
-                  image: AssetImage('assets/images/bg3.png'),
+                  image: AssetImage('assets/images/bg3.jpg'),
                   fit: BoxFit.cover,
                 ),
         ),
