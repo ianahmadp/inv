@@ -27,7 +27,7 @@ class _FirstScreenState extends State<FirstScreen> {
   double opacityDear = 0.0;
 
   double opacityButton = 0.0;
-  EdgeInsets paddingButton = const EdgeInsets.only(top: 30);
+  EdgeInsets paddingButton = const EdgeInsets.only(top: 20);
 
   void startAnimation() async {
     await Future.delayed(const Duration(seconds: 1));
@@ -85,8 +85,7 @@ class _FirstScreenState extends State<FirstScreen> {
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
             image: DecorationImage(
-          image: NetworkImage(
-              'https://images.unsplash.com/photo-1617872051806-e9e08b70d3af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'),
+          image: AssetImage('assets/images/bg1.jpg'),
           fit: BoxFit.cover,
         )),
         child: Stack(
@@ -108,7 +107,7 @@ class _FirstScreenState extends State<FirstScreen> {
                     duration: const Duration(milliseconds: 400),
                     child: AnimatedPadding(
                       padding: paddingWeddingInvitation,
-                      duration: const Duration(seconds: 1),
+                      duration: const Duration(milliseconds: 800),
                       child: Text(
                         'Wedding Invitation',
                         style: GoogleFonts.playfairDisplay(
@@ -135,14 +134,16 @@ class _FirstScreenState extends State<FirstScreen> {
                           color: AppColors.white,
                         ),
                       ),
+                      const SizedBox(width: 8),
                       Text(
-                        ' & ',
+                        '&',
                         style: GoogleFonts.greatVibes(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
                           color: AppColors.primaryColor,
                         ),
                       ),
+                      const SizedBox(width: 4),
                       Text(
                         'Ian',
                         style: GoogleFonts.greatVibes(
@@ -158,7 +159,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 ),
                 AnimatedOpacity(
                   opacity: opacityDear,
-                  duration: const Duration(seconds: 2),
+                  duration: const Duration(seconds: 1),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,

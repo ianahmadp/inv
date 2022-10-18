@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:undangan/header_screen.dart';
 
 import 'configs/themes/app_colors.dart';
 import 'maps_screen.dart';
@@ -14,18 +15,31 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   late ScrollController _controller;
   double pixels = 0.0;
+  bool isLoad = true;
+  bool isLoadBg = true;
+
+  void startLoad() async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    setState(() {
+      isLoad = false;
+    });
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      isLoadBg = false;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-
-    _controller = ScrollController();
-    _controller.addListener(() {
-      setState(() {
-        pixels = _controller.position.pixels;
-        print(_controller.position.pixels);
-      });
-    });
+    // _controller = ScrollController();
+    // _controller.addListener(() {
+    //   setState(() {
+    //     pixels = _controller.position.pixels;
+    //     print(_controller.position.pixels);
+    //   });
+    // });
+    startLoad();
   }
 
   @override
@@ -34,35 +48,40 @@ class _MainScreenState extends State<MainScreen> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-          image: NetworkImage(
-              'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHdlZGRpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60'),
-          fit: BoxFit.cover,
-        )),
+        decoration: BoxDecoration(
+          color: AppColors.backgroundPrimary,
+          image: isLoadBg
+              ? null
+              : const DecorationImage(
+                  image: AssetImage('assets/images/bg3.png'),
+                  fit: BoxFit.cover,
+                ),
+        ),
         child: Stack(
           children: [
-            Container(
-              color: AppColors.textPrimary.withOpacity(0.8),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    HeaderView(),
-                    MempelaiView(),
-                    TimeView(),
-                    PlaceView(),
-                    NoteSectionMahaSuciView(),
-                    AmplopView(),
-                    CommentView(),
-                  ],
+            if (!isLoadBg)
+              Container(
+                color: AppColors.textPrimary.withOpacity(0.6),
+              ),
+            if (!isLoad)
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      HeaderScreen(),
+                      MempelaiView(),
+                      TimeView(),
+                      PlaceView(),
+                      NoteSectionMahaSuciView(),
+                      AmplopView(),
+                      CommentView(),
+                    ],
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),
@@ -70,8 +89,8 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-class HeaderView extends StatelessWidget {
-  const HeaderView({Key? key}) : super(key: key);
+class MempelaiView extends StatelessWidget {
+  const MempelaiView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -80,87 +99,7 @@ class HeaderView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(
-          height: 40,
-        ),
-        Text(
-          'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم',
-          style: GoogleFonts.arefRuqaa(
-            fontSize: 30,
-            color: AppColors.white,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
-          child: Text(
-            "Dengan memohon Ridho & Rahmat Allah subhanahu wa ta'ala, kami mengundang bapak/ibu dan saudara/i dalam acara pernikahan kami",
-            style: GoogleFonts.playfairDisplay(
-              fontSize: 14,
-              color: AppColors.white,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        const SizedBox(
-          height: 80,
-        ),
-        Text(
-          'The Wedding of',
-          style: GoogleFonts.greatVibes(
-            fontSize: 30,
-            fontWeight: FontWeight.normal,
-            color: AppColors.white,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Wenty',
-              style: GoogleFonts.croissantOne(
-                fontSize: 60,
-                fontWeight: FontWeight.normal,
-                color: AppColors.primaryColor,
-                letterSpacing: -3,
-              ),
-            ),
-            const SizedBox(width: 3),
-            Text(
-              '&',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                color: AppColors.white,
-              ),
-            ),
-            const SizedBox(width: 3),
-            Text(
-              'Ian',
-              style: GoogleFonts.croissantOne(
-                fontSize: 60,
-                fontWeight: FontWeight.normal,
-                color: AppColors.primaryColor,
-                letterSpacing: -3,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Text(
-          'Sabtu, 12 November 2022',
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 20,
-            color: AppColors.white,
-          ),
-        ),
-        const SizedBox(
-          height: 60,
+          height: 30,
         ),
         Stack(
           alignment: Alignment.topCenter,
@@ -197,24 +136,10 @@ class HeaderView extends StatelessWidget {
         const SizedBox(
           height: 80,
         ),
-      ],
-    );
-  }
-}
-
-class MempelaiView extends StatelessWidget {
-  const MempelaiView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
         _profile(
           'Wenty Meliany',
           'putri dari',
-          'Bpk. Sarno Winoto &\nIbu. Titik Lestari',
+          'Bpk. Sarno &\nIbu. Titik Lestari',
           'assets/images/ava_wenty.png',
         ),
         Padding(
