@@ -34,29 +34,32 @@ class MyApp extends StatelessWidget {
     errorBuilder: (context, state) => FirstScreen(),
     routes: <GoRoute>[
       GoRoute(
-          path: '/',
-          builder: (BuildContext context, GoRouterState state) =>
-              ContainerScreen(child: MainPage()),
-          routes: <GoRoute>[
-            GoRoute(
-              name: 'to',
-              path: 'to/:to',
-              builder: (BuildContext context, GoRouterState state) {
-                return ContainerScreen(
-                  child: FirstScreen(
-                    toName: state.params['to']!,
-                  ),
-                );
-              },
-            ),
-          ]),
-      GoRoute(
-        name: 'main',
-        path: '/main',
-        builder: (BuildContext context, GoRouterState state) {
-          return ContainerScreen(child: const MainScreen());
-        },
+        path: '/:to',
+        builder: (BuildContext context, GoRouterState state) => ContainerScreen(
+            child: MainPage(
+          toName: state.params['to']!,
+        )),
+        // routes: <GoRoute>[
+        //   GoRoute(
+        //     name: 'to',
+        //     path: 'to/:to',
+        //     builder: (BuildContext context, GoRouterState state) {
+        //       return ContainerScreen(
+        //         child: FirstScreen(
+        //           toName: state.params['to']!,
+        //         ),
+        //       );
+        //     },
+        //   ),
+        // ],
       ),
+      // GoRoute(
+      //   name: 'main',
+      //   path: '/main',
+      //   builder: (BuildContext context, GoRouterState state) {
+      //     return ContainerScreen(child: const MainScreen());
+      //   },
+      // ),
     ],
   );
 }
