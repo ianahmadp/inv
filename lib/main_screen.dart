@@ -4,6 +4,7 @@ import 'package:undangan/header_screen.dart';
 
 import 'configs/themes/app_colors.dart';
 import 'maps_screen.dart';
+import 'dart:js' as js;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -113,7 +114,7 @@ class MempelaiView extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(40, 50, 40, 8),
+              padding: const EdgeInsets.fromLTRB(24, 50, 24, 8),
               child: Text(
                 '"Dan Diantara tanda-tanda kekuasaan Allah ialah Diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu merasa tentram disamping-Nya dan dijadikan-Nya rasa kasih sayang diantara kamu. Sesungguhnya yang demikian itu menjadi bukti kekuasaan Allah bagi kaum yang berfikir."',
                 style: GoogleFonts.playfairDisplay(
@@ -381,20 +382,25 @@ class PlaceView extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            height: 34,
-            width: 120,
-            decoration: BoxDecoration(
-                color: AppColors.white.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(22),
-                border: Border.all(color: AppColors.white, width: 1)),
-            child: Center(
-              child: Text(
-                'Open Maps',
-                style: GoogleFonts.playfairDisplay(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.white,
+          GestureDetector(
+            onTap: () {
+              js.context.callMethod('open', ['https://goo.gl/maps/4CreNKFZQswPKgPCA']);
+            },
+            child: Container(
+              height: 34,
+              width: 120,
+              decoration: BoxDecoration(
+                  color: AppColors.white.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(22),
+                  border: Border.all(color: AppColors.white, width: 1)),
+              child: Center(
+                child: Text(
+                  'Open Maps',
+                  style: GoogleFonts.playfairDisplay(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.white,
+                  ),
                 ),
               ),
             ),
