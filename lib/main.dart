@@ -2,10 +2,8 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:undangan/first_screen.dart';
 import 'package:undangan/main_page.dart';
-import 'package:undangan/main_screen.dart';
 
 import 'configs/themes/app_colors.dart';
 
@@ -31,7 +29,7 @@ class MyApp extends StatelessWidget {
   }
 
   late final GoRouter _router = GoRouter(
-    errorBuilder: (context, state) => FirstScreen(),
+    errorBuilder: (context, state) => ContainerScreen(child: MainPage()),
     routes: <GoRoute>[
       GoRoute(
         path: '/:to',
@@ -79,14 +77,5 @@ class ContainerScreen extends StatelessWidget {
                 SizedBox(width: width, height: double.infinity, child: child));
       },
     );
-  }
-}
-
-class IntroScreen extends StatelessWidget {
-  const IntroScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

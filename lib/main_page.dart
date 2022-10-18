@@ -133,6 +133,7 @@ class _MainPageState extends State<MainPage> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
+      // color: AppColors.primaryDark2Color,
       decoration: BoxDecoration(
         color: AppColors.backgroundPrimary,
         image: !isLoadBgMain
@@ -179,7 +180,7 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             Container(
-              color: AppColors.textPrimary.withOpacity(0.3),
+              color: AppColors.textPrimary.withOpacity(0.4),
             ),
             Column(
               mainAxisSize: MainAxisSize.min,

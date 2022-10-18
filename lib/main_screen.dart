@@ -96,72 +96,84 @@ class MempelaiView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(
-          height: 30,
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.textPrimary.withOpacity(0.6),
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(16),
+          bottomRight: Radius.circular(16),
         ),
-        Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            Text(
-              '“',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 60,
-                fontWeight: FontWeight.normal,
-                color: AppColors.primaryColor,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(24, 50, 24, 8),
-              child: Text(
-                '"Dan Diantara tanda-tanda kekuasaan Allah ialah Diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu merasa tentram disamping-Nya dan dijadikan-Nya rasa kasih sayang diantara kamu. Sesungguhnya yang demikian itu menjadi bukti kekuasaan Allah bagi kaum yang berfikir."',
-                style: GoogleFonts.playfairDisplay(
-                  fontSize: 14,
-                  color: AppColors.white,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
-        ),
-        Text(
-          '(QS. Ar- Rum 21)',
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 13,
-            color: AppColors.white,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 30,
           ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(
-          height: 80,
-        ),
-        _profile(
-          'Wenty Meliany',
-          'putri dari',
-          'Bpk. Sarno &\nIbu. Titik Lestari',
-          'assets/images/ava_wenty.png',
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            ' & ',
+          Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              Text(
+                '“',
+                style: GoogleFonts.playfairDisplay(
+                  fontSize: 60,
+                  fontWeight: FontWeight.normal,
+                  color: AppColors.primaryColor,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(24, 50, 24, 8),
+                child: Text(
+                  '"Dan Diantara tanda-tanda kekuasaan Allah ialah Diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu merasa tentram disamping-Nya dan dijadikan-Nya rasa kasih sayang diantara kamu. Sesungguhnya yang demikian itu menjadi bukti kekuasaan Allah bagi kaum yang berfikir."',
+                  style: GoogleFonts.playfairDisplay(
+                    fontSize: 14,
+                    color: AppColors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+          Text(
+            '(QS. Ar- Rum 21)',
             style: GoogleFonts.playfairDisplay(
-              fontSize: 36,
-              fontWeight: FontWeight.bold,
+              fontSize: 13,
               color: AppColors.white,
             ),
+            textAlign: TextAlign.center,
           ),
-        ),
-        _profile(
-          'Ian Ahmad Pramana',
-          'putra dari',
-          'Bpk. Edy Pramono &\nIbu. Juharini',
-          'assets/images/ava_ian.png',
-        ),
-      ],
+          const SizedBox(
+            height: 80,
+          ),
+          _profile(
+            'Wenty Meliany',
+            'putri dari',
+            'Bpk. Sarno &\nIbu. Titik Lestari',
+            'assets/images/ava_wenty.png',
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              ' & ',
+              style: GoogleFonts.playfairDisplay(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+                color: AppColors.white,
+              ),
+            ),
+          ),
+          _profile(
+            'Ian Ahmad Pramana',
+            'putra dari',
+            'Bpk. Edy Pramono &\nIbu. Juharini',
+            'assets/images/ava_ian.png',
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+        ],
+      ),
     );
   }
 
@@ -236,7 +248,7 @@ class TimeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(top: 80, right: 20, left: 20, bottom: 20),
+      margin: const EdgeInsets.only(top: 50, right: 20, left: 20, bottom: 20),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.primaryDarkColor.withOpacity(0.8),
@@ -385,7 +397,8 @@ class PlaceView extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              js.context.callMethod('open', ['https://goo.gl/maps/4CreNKFZQswPKgPCA']);
+              js.context.callMethod(
+                  'open', ['https://goo.gl/maps/4CreNKFZQswPKgPCA']);
             },
             child: Container(
               height: 34,
