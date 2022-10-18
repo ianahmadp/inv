@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
@@ -32,14 +34,17 @@ class MyApp extends StatelessWidget {
     routes: <GoRoute>[
       GoRoute(
           path: '/',
-          builder: (BuildContext context, GoRouterState state) => FirstScreen(),
+          builder: (BuildContext context, GoRouterState state) =>
+              ContainerScreen(child: FirstScreen()),
           routes: <GoRoute>[
             GoRoute(
               name: 'to',
               path: 'to/:to',
               builder: (BuildContext context, GoRouterState state) {
-                return FirstScreen(
-                  toName: state.params['to']!,
+                return ContainerScreen(
+                  child: FirstScreen(
+                    toName: state.params['to']!,
+                  ),
                 );
               },
             ),
@@ -48,12 +53,29 @@ class MyApp extends StatelessWidget {
         name: 'main',
         path: '/main',
         builder: (BuildContext context, GoRouterState state) {
-          return const MainScreen();
+          return ContainerScreen(child: const MainScreen());
         },
       ),
     ],
   );
+}
 
+class ContainerScreen extends StatelessWidget {
+  Widget child;
+
+  ContainerScreen({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double width = window.screen!.width! > 500 ? 500 : double.infinity;
+        return Center(
+            child:
+                SizedBox(width: width, height: double.infinity, child: child));
+      },
+    );
+  }
 }
 
 class IntroScreen extends StatelessWidget {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:undangan/header_screen.dart';
+import 'package:undangan/main.dart';
 
 import 'configs/themes/app_colors.dart';
 import 'maps_screen.dart';
@@ -71,7 +72,7 @@ class _MainScreenState extends State<MainScreen> {
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
+                    children: const [
                       HeaderScreen(),
                       MempelaiView(),
                       TimeView(),
@@ -485,7 +486,7 @@ class AmplopView extends StatelessWidget {
                       topRight: Radius.circular(25)),
                 ),
                 builder: (context) {
-                  return const AmplopModal();
+                  return ContainerScreen(child: const AmplopModal());
                 },
               );
             },
@@ -804,13 +805,14 @@ class _CommentViewState extends State<CommentView> {
           const SizedBox(height: 10),
           Container(
             margin: const EdgeInsets.only(top: 10),
-            height: MediaQuery.of(context).size.width,
+            height: 500,
             width: double.infinity,
             decoration: BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.circular(10),
             ),
             child: ListView.builder(
+              padding: EdgeInsets.zero,
               itemCount: 10,
               itemBuilder: (context, index) => itemComment(),
             ),

@@ -66,14 +66,8 @@ class _HeaderScreenState extends State<HeaderScreen> {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 9 / 16,
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
-        // decoration: const BoxDecoration(
-        //   image: DecorationImage(
-        //     image: AssetImage('assets/images/bg2.jpg'),
-        //     fit: BoxFit.cover,
-        //   ),
-        // ),
         child: Stack(
           children: [
             AnimatedOpacity(
@@ -129,102 +123,6 @@ class _HeaderScreenState extends State<HeaderScreen> {
                     ),
                   ),
                 ),
-                // const SizedBox(
-                //   height: 80,
-                // ),
-                // Text(
-                //   'The Wedding of',
-                //   style: GoogleFonts.greatVibes(
-                //     fontSize: 30,
-                //     fontWeight: FontWeight.normal,
-                //     color: AppColors.white,
-                //   ),
-                //   textAlign: TextAlign.center,
-                // ),
-                // const SizedBox(
-                //   height: 16,
-                // ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     Text(
-                //       'Wenty',
-                //       style: GoogleFonts.croissantOne(
-                //         fontSize: 60,
-                //         fontWeight: FontWeight.normal,
-                //         color: AppColors.primaryColor,
-                //         letterSpacing: -3,
-                //       ),
-                //     ),
-                //     const SizedBox(width: 3),
-                //     Text(
-                //       '&',
-                //       style: GoogleFonts.playfairDisplay(
-                //         fontSize: 40,
-                //         fontWeight: FontWeight.bold,
-                //         color: AppColors.white,
-                //       ),
-                //     ),
-                //     const SizedBox(width: 3),
-                //     Text(
-                //       'Ian',
-                //       style: GoogleFonts.croissantOne(
-                //         fontSize: 60,
-                //         fontWeight: FontWeight.normal,
-                //         color: AppColors.primaryColor,
-                //         letterSpacing: -3,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(
-                //   height: 20,
-                // ),
-                // Text(
-                //   'Sabtu, 12 November 2022',
-                //   style: GoogleFonts.playfairDisplay(
-                //     fontSize: 20,
-                //     color: AppColors.white,
-                //   ),
-                // ),
-                // const SizedBox(
-                //   height: 60,
-                // ),
-                // Stack(
-                //   alignment: Alignment.topCenter,
-                //   children: [
-                //     Text(
-                //       '“',
-                //       style: GoogleFonts.playfairDisplay(
-                //         fontSize: 60,
-                //         fontWeight: FontWeight.normal,
-                //         color: AppColors.primaryColor,
-                //       ),
-                //     ),
-                //     Padding(
-                //       padding: const EdgeInsets.fromLTRB(40, 50, 40, 8),
-                //       child: Text(
-                //         '"Dan Diantara tanda-tanda kekuasaan Allah ialah Diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu merasa tentram disamping-Nya dan dijadikan-Nya rasa kasih sayang diantara kamu. Sesungguhnya yang demikian itu menjadi bukti kekuasaan Allah bagi kaum yang berfikir."',
-                //         style: GoogleFonts.playfairDisplay(
-                //           fontSize: 14,
-                //           color: AppColors.white,
-                //         ),
-                //         textAlign: TextAlign.center,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // Text(
-                //   '(QS. Ar- Rum 21)',
-                //   style: GoogleFonts.playfairDisplay(
-                //     fontSize: 13,
-                //     color: AppColors.white,
-                //   ),
-                //   textAlign: TextAlign.center,
-                // ),
-                // const SizedBox(
-                //   height: 80,
-                // ),
               ],
             ),
             Align(
@@ -275,7 +173,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                                 color: AppColors.white,
                               ),
                             ),
-                            const SizedBox(width: 3),
+                            const SizedBox(width: 2),
                             Text(
                               'Ian',
                               style: GoogleFonts.croissantOne(
@@ -311,41 +209,6 @@ class _HeaderScreenState extends State<HeaderScreen> {
                       ),
                     ),
                   ),
-                  // Stack(
-                  //   alignment: Alignment.topCenter,
-                  //   children: [
-                  //     Text(
-                  //       '“',
-                  //       style: GoogleFonts.playfairDisplay(
-                  //         fontSize: 60,
-                  //         fontWeight: FontWeight.normal,
-                  //         color: AppColors.primaryColor,
-                  //       ),
-                  //     ),
-                  //     Padding(
-                  //       padding: const EdgeInsets.fromLTRB(40, 50, 40, 8),
-                  //       child: Text(
-                  //         '"Dan Diantara tanda-tanda kekuasaan Allah ialah Diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu merasa tentram disamping-Nya dan dijadikan-Nya rasa kasih sayang diantara kamu. Sesungguhnya yang demikian itu menjadi bukti kekuasaan Allah bagi kaum yang berfikir."',
-                  //         style: GoogleFonts.playfairDisplay(
-                  //           fontSize: 14,
-                  //           color: AppColors.white,
-                  //         ),
-                  //         textAlign: TextAlign.center,
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // Text(
-                  //   '(QS. Ar- Rum 21)',
-                  //   style: GoogleFonts.playfairDisplay(
-                  //     fontSize: 13,
-                  //     color: AppColors.white,
-                  //   ),
-                  //   textAlign: TextAlign.center,
-                  // ),
-                  // const SizedBox(
-                  //   height: 80,
-                  // ),
                 ],
               ),
             ),
