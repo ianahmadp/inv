@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:undangan/first_screen.dart';
+import 'package:undangan/main_page.dart';
 import 'package:undangan/main_screen.dart';
 
 import 'configs/themes/app_colors.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       GoRoute(
           path: '/',
           builder: (BuildContext context, GoRouterState state) =>
-              ContainerScreen(child: FirstScreen()),
+              ContainerScreen(child: MainPage()),
           routes: <GoRoute>[
             GoRoute(
               name: 'to',

@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'configs/themes/app_colors.dart';
+import 'header_screen.dart';
 import 'main_screen.dart';
 
 class FirstScreen extends StatefulWidget {
@@ -68,7 +69,20 @@ class _FirstScreenState extends State<FirstScreen> {
       opacityButton = 0;
     });
     await Future.delayed(const Duration(seconds: 1));
-    context.go('/main');
+    context.go("/main");
+  }
+
+  bool isFirstOpen = true;
+  EdgeInsets paddingScreen = EdgeInsets.zero;
+
+  void removeFirstScreen() async {
+    setState(() {
+      paddingScreen = EdgeInsets.only(top: MediaQuery.of(context).size.height);
+    });
+    await Future.delayed(const Duration(milliseconds: 200));
+    setState(() {
+      isFirstOpen = false;
+    });
   }
 
   @override
@@ -80,162 +94,174 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage('assets/images/bg1.jpg'),
-          fit: BoxFit.cover,
-        )),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              color: AppColors.textPrimary.withOpacity(0.6),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 60,
-                  margin: const EdgeInsets.only(bottom: 8),
-                  child: AnimatedOpacity(
-                    opacity: opacityWeddingInvitation,
-                    duration: const Duration(milliseconds: 400),
-                    child: AnimatedPadding(
-                      padding: paddingWeddingInvitation,
-                      duration: const Duration(milliseconds: 800),
-                      child: Text(
-                        'Wedding Invitation',
-                        style: GoogleFonts.playfairDisplay(
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                          color: AppColors.white,
-                          letterSpacing: 2,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+      body: Stack(
+        children: [
+          if (isFirstOpen)
+            AnimatedPadding(
+              duration: const Duration(milliseconds: 200),
+              padding: paddingScreen,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                  image: AssetImage('assets/images/bg1.jpg'),
+                  fit: BoxFit.cover,
+                )),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      color: AppColors.textPrimary.withOpacity(0.6),
                     ),
-                  ),
-                ),
-                AnimatedOpacity(
-                  opacity: opacityWentyIan,
-                  duration: const Duration(seconds: 1),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Wenty',
-                        style: GoogleFonts.greatVibes(
-                          fontSize: 60,
-                          color: AppColors.white,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        '&',
-                        style: GoogleFonts.greatVibes(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        'Ian',
-                        style: GoogleFonts.greatVibes(
-                          fontSize: 60,
-                          color: AppColors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
-                AnimatedOpacity(
-                  opacity: opacityDear,
-                  duration: const Duration(seconds: 1),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Dear,',
-                        style: GoogleFonts.playfairDisplay(
-                          fontSize: 14,
-                          color: AppColors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        widget.toName ?? 'Ian Ahmad P',
-                        style: GoogleFonts.playfairDisplay(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.white,
-                          letterSpacing: 1.0,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'you are invited',
-                        style: GoogleFonts.playfairDisplay(
-                          fontSize: 14,
-                          color: AppColors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 70,
-                  width: 160,
-                  margin: EdgeInsets.only(top: 60),
-                  child: Stack(
-                    children: [
-                      AnimatedOpacity(
-                        opacity: opacityButton,
-                        duration: const Duration(milliseconds: 400),
-                        child: AnimatedPadding(
-                          padding: paddingButton,
-                          duration: const Duration(seconds: 1),
-                          child: GestureDetector(
-                            onTap: () => toMainScreen(),
-                            child: Container(
-                              height: 40,
-                              width: 160,
-                              decoration: BoxDecoration(
-                                  color: AppColors.white.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(22),
-                                  border: Border.all(
-                                      color: AppColors.white, width: 1)),
-                              child: Center(
-                                child: Text(
-                                  'Open Invitation',
-                                  style: GoogleFonts.playfairDisplay(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                    color: AppColors.white,
-                                  ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 60,
+                          margin: const EdgeInsets.only(bottom: 8),
+                          child: AnimatedOpacity(
+                            opacity: opacityWeddingInvitation,
+                            duration: const Duration(milliseconds: 400),
+                            child: AnimatedPadding(
+                              padding: paddingWeddingInvitation,
+                              duration: const Duration(milliseconds: 800),
+                              child: Text(
+                                'Wedding Invitation',
+                                style: GoogleFonts.playfairDisplay(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  color: AppColors.white,
+                                  letterSpacing: 2,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
+                        AnimatedOpacity(
+                          opacity: opacityWentyIan,
+                          duration: const Duration(seconds: 1),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Wenty',
+                                style: GoogleFonts.greatVibes(
+                                  fontSize: 60,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                '&',
+                                style: GoogleFonts.greatVibes(
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.primaryColor,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                'Ian',
+                                style: GoogleFonts.greatVibes(
+                                  fontSize: 60,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 60,
+                        ),
+                        AnimatedOpacity(
+                          opacity: opacityDear,
+                          duration: const Duration(seconds: 1),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Dear,',
+                                style: GoogleFonts.playfairDisplay(
+                                  fontSize: 14,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                widget.toName ?? 'Ian Ahmad P',
+                                style: GoogleFonts.playfairDisplay(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.white,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'you are invited',
+                                style: GoogleFonts.playfairDisplay(
+                                  fontSize: 14,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          height: 70,
+                          width: 160,
+                          margin: EdgeInsets.only(top: 60),
+                          child: Stack(
+                            children: [
+                              AnimatedOpacity(
+                                opacity: opacityButton,
+                                duration: const Duration(milliseconds: 400),
+                                child: AnimatedPadding(
+                                  padding: paddingButton,
+                                  duration: const Duration(seconds: 1),
+                                  child: GestureDetector(
+                                    onTap: () => removeFirstScreen(),
+                                    child: Container(
+                                      height: 40,
+                                      width: 160,
+                                      decoration: BoxDecoration(
+                                          color:
+                                              AppColors.white.withOpacity(0.3),
+                                          borderRadius:
+                                              BorderRadius.circular(22),
+                                          border: Border.all(
+                                              color: AppColors.white,
+                                              width: 1)),
+                                      child: Center(
+                                        child: Text(
+                                          'Open Invitation',
+                                          style: GoogleFonts.playfairDisplay(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.normal,
+                                            color: AppColors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ],
-        ),
+        ],
       ),
     );
   }
