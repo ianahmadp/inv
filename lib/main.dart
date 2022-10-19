@@ -2,7 +2,6 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:undangan/first_screen.dart';
 import 'package:undangan/main_page.dart';
 
 import 'configs/themes/app_colors.dart';
@@ -37,27 +36,7 @@ class MyApp extends StatelessWidget {
             child: MainPage(
           toName: state.params['to']!,
         )),
-        // routes: <GoRoute>[
-        //   GoRoute(
-        //     name: 'to',
-        //     path: 'to/:to',
-        //     builder: (BuildContext context, GoRouterState state) {
-        //       return ContainerScreen(
-        //         child: FirstScreen(
-        //           toName: state.params['to']!,
-        //         ),
-        //       );
-        //     },
-        //   ),
-        // ],
       ),
-      // GoRoute(
-      //   name: 'main',
-      //   path: '/main',
-      //   builder: (BuildContext context, GoRouterState state) {
-      //     return ContainerScreen(child: const MainScreen());
-      //   },
-      // ),
     ],
   );
 }
