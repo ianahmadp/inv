@@ -451,7 +451,7 @@ class _MainPageState extends State<MainPage> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        widget.toName ?? 'Ian Ahmad P',
+                        widget.toName ?? 'My Beloved Friend',
                         style: GoogleFonts.playfairDisplay(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

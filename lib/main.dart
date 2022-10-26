@@ -6,10 +6,11 @@ import 'package:go_router/go_router.dart';
 import 'package:undangan/main_page.dart';
 
 import 'configs/themes/app_colors.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // ensure initialisation
+  usePathUrlStrategy();
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: "AIzaSyBUUv-eZ3s1xSSmb-q3aMahK36L1S5VXis",
@@ -42,13 +43,14 @@ class MyApp extends StatelessWidget {
   }
 
   late final GoRouter _router = GoRouter(
+
     errorBuilder: (context, state) => ContainerScreen(child: MainPage()),
     routes: <GoRoute>[
       GoRoute(
         path: '/:to',
         builder: (BuildContext context, GoRouterState state) => ContainerScreen(
             child: MainPage(
-          toName: state.params['to']!,
+          toName: state.params['to'],
         )),
       ),
     ],
