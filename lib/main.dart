@@ -36,7 +36,7 @@ final router = GoRouter(
       path: '/to/:to',
       builder: (context, state) => ContainerScreen(
         child: MainPage(
-          toName: state.params['to'],
+          toName: state.params['to']!,
         ),
       ),
     ),
