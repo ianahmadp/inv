@@ -7,11 +7,11 @@ import 'package:undangan/generate_page.dart';
 import 'package:undangan/main_page.dart';
 
 import 'configs/themes/app_colors.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
+// import 'package:flutter_web_plugins/url_strategy.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  usePathUrlStrategy();
+  // usePathUrlStrategy();
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: "AIzaSyBUUv-eZ3s1xSSmb-q3aMahK36L1S5VXis",
