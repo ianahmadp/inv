@@ -24,14 +24,18 @@ class _CommentViewState extends State<CommentView> {
     super.initState();
     _dbref = FirebaseDatabase.instance.ref();
     _dbref.onValue.listen((event) {
-      final json = event.snapshot.value as Map;
-      final reversed =
-          Map.fromEntries(json.entries.map((e) => MapEntry(e.key, e.value)));
-      listComment?.clear();
-      for (var i in reversed.entries) {
-        var name = i.key.toString().split('&&').last;
+      if (event.snapshot.value != null) {
+        final json = event.snapshot.value as Map;
+        final tempData =
+            Map.fromEntries(json.entries.map((e) => MapEntry(e.key, e.value)));
+        List<Comment>? listTemp = [];
+        for (var i in tempData.entries) {
+          var name = i.key.toString().split('&&').last;
+          listTemp.add(Comment(name: name, body: i.value));
+        }
         setState(() {
-          listComment?.add(Comment(name: name, body: i.value));
+          listComment?.clear();
+          listComment?.addAll(listTemp.reversed);
         });
       }
     });
@@ -240,9 +244,20 @@ class _CommentViewState extends State<CommentView> {
       ))),
       child: Row(
         children: [
-          const Icon(
-            Icons.favorite,
-            color: AppColors.primaryColor,
+          Container(
+            height: 34,
+            width: 34,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(17),
+              color: AppColors.primaryColor.withOpacity(0.2),
+            ),
+            child: const Center(
+              child: Icon(
+                Icons.favorite,
+                color: AppColors.primaryColor,
+                size: 18,
+              ),
+            ),
           ),
           const SizedBox(
             width: 12,
