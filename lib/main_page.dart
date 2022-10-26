@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -6,6 +7,12 @@ import 'configs/themes/app_colors.dart';
 import 'main.dart';
 import 'maps_screen.dart';
 import 'dart:js' as js;
+
+class Comment {
+  String? name, body;
+
+  Comment({this.name, this.body});
+}
 
 class MainPage extends StatefulWidget {
   String? toName;

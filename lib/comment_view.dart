@@ -1,7 +1,9 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'configs/themes/app_colors.dart';
+import 'main_page.dart';
 
 class CommentView extends StatefulWidget {
   const CommentView({Key? key}) : super(key: key);
@@ -11,11 +13,32 @@ class CommentView extends StatefulWidget {
 }
 
 class _CommentViewState extends State<CommentView> {
+  final nameController = TextEditingController();
+  final commentController = TextEditingController();
+
+  late DatabaseReference _dbref;
+  List<Comment>? listComment = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _dbref = FirebaseDatabase.instance.ref();
+    _dbref.onValue.listen((event) {
+      final json = event.snapshot.value as Map;
+      final reversed =
+          Map.fromEntries(json.entries.map((e) => MapEntry(e.key, e.value)));
+      listComment?.clear();
+      for (var i in reversed.entries) {
+        var name = i.key.toString().split('&&').last;
+        setState(() {
+          listComment?.add(Comment(name: name, body: i.value));
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final nameController = TextEditingController();
-    final commentController = TextEditingController();
-
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 24),
@@ -64,7 +87,7 @@ class _CommentViewState extends State<CommentView> {
               filled: true,
               fillColor: AppColors.white.withOpacity(0.7),
               contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               hintText: 'Tuliskan nama kamu',
               hintStyle: GoogleFonts.playfairDisplay(
                 fontSize: 14,
@@ -111,7 +134,7 @@ class _CommentViewState extends State<CommentView> {
               filled: true,
               fillColor: AppColors.white.withOpacity(0.7),
               contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
               hintText: 'Tuliskan ucapan atau doa',
               hintStyle: GoogleFonts.playfairDisplay(
                 fontSize: 14,
@@ -136,27 +159,44 @@ class _CommentViewState extends State<CommentView> {
               ),
             ),
           ),
-          Container(
-            height: 46,
-            margin: EdgeInsets.only(top: 20),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: AppColors.primaryDark2Color,
-              borderRadius: BorderRadius.circular(8),
+          InkWell(
+            onTap: () {
+              if (nameController.text.isNotEmpty &&
+                  commentController.text.isNotEmpty) {
+                _dbref
+                    .child(
+                        '${DateTime.now().toString().replaceAll('.', '')}&&${nameController.text}')
+                    .set(commentController.text)
+                    .then((value) {
+                  setState(() {
+                    nameController.clear();
+                    commentController.clear();
+                  });
+                });
+              }
+            },
+            child: Container(
+              height: 46,
+              margin: const EdgeInsets.only(top: 20),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: AppColors.primaryDark2Color,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                  child: Text(
+                'Kirim',
+                style: GoogleFonts.playfairDisplay(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.white,
+                ),
+              )),
             ),
-            child: Center(
-                child: Text(
-                  'Kirim',
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.white,
-                  ),
-                )),
           ),
           const SizedBox(height: 40),
           Text(
-            'Ucapan dan doa sahabat',
+            'Ucapan dan doa',
             style: GoogleFonts.croissantOne(
               fontSize: 18,
               color: AppColors.white,
@@ -180,8 +220,8 @@ class _CommentViewState extends State<CommentView> {
             ),
             child: ListView.builder(
               padding: EdgeInsets.zero,
-              itemCount: 10,
-              itemBuilder: (context, index) => itemComment(),
+              itemCount: listComment?.length ?? 0,
+              itemBuilder: (context, index) => itemComment(listComment?[index]),
             ),
           ),
         ],
@@ -189,23 +229,23 @@ class _CommentViewState extends State<CommentView> {
     );
   }
 
-  Widget itemComment() {
+  Widget itemComment(Comment? comment) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(
-                color: AppColors.textPrimary.withOpacity(0.1),
-                width: 1,
-              ))),
+        color: AppColors.textPrimary.withOpacity(0.1),
+        width: 1,
+      ))),
       child: Row(
         children: [
           const Icon(
             Icons.favorite,
             color: AppColors.primaryColor,
           ),
-          SizedBox(
-            width: 10,
+          const SizedBox(
+            width: 12,
           ),
           Expanded(
             child: Column(
@@ -213,7 +253,7 @@ class _CommentViewState extends State<CommentView> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Randyka Rusnian',
+                  comment?.name ?? '-',
                   style: GoogleFonts.playfairDisplay(
                     fontSize: 14,
                     color: AppColors.textPrimary,
@@ -222,7 +262,7 @@ class _CommentViewState extends State<CommentView> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Alhamdulillah, semoga dilancarkan sampai hari H. Menjadi keluarga sakinah, mawaddah, warohmah. Ammin yaa robbal alamin.',
+                  comment?.body ?? '-',
                   style: GoogleFonts.playfairDisplay(
                     fontSize: 14,
                     color: AppColors.textPrimary,
