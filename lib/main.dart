@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:undangan/generate_page.dart';
 import 'package:undangan/main_page.dart';
 
 import 'configs/themes/app_colors.dart';
@@ -25,6 +26,28 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+final router = GoRouter(
+  debugLogDiagnostics: true,
+  initialLocation: '/to',
+  errorBuilder: (context, state) => ContainerScreen(child: MainPage()),
+  routes: <GoRoute>[
+    GoRoute(
+      name: 'root',
+      path: '/to/:to',
+      builder: (context, state) => ContainerScreen(
+        child: MainPage(
+          toName: state.params['to'],
+        ),
+      ),
+    ),
+    GoRoute(
+      name: 'generated',
+      path: '/generated',
+      builder: (context, state) => const GeneratePage(),
+    ),
+  ],
+);
+
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
@@ -32,29 +55,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Wenty & Ian',
-      routeInformationProvider: _router.routeInformationProvider,
-      routeInformationParser: _router.routeInformationParser,
-      routerDelegate: _router.routerDelegate,
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
       theme: ThemeData(
         primaryColor: AppColors.primaryDark2Color,
       ),
       debugShowCheckedModeBanner: false,
     );
   }
-
-  late final GoRouter _router = GoRouter(
-
-    errorBuilder: (context, state) => ContainerScreen(child: MainPage()),
-    routes: <GoRoute>[
-      GoRoute(
-        path: '/:to',
-        builder: (BuildContext context, GoRouterState state) => ContainerScreen(
-            child: MainPage(
-          toName: state.params['to'],
-        )),
-      ),
-    ],
-  );
 }
 
 class ContainerScreen extends StatelessWidget {
