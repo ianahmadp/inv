@@ -105,6 +105,7 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       opacityTextHeader = 1;
       paddingTextHeader = const EdgeInsets.only(top: 20);
+      isLoadBgMain = true;
     });
     await Future.delayed(const Duration(milliseconds: 600));
     setState(() {
@@ -114,7 +115,6 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       opacityWentyIanMain = 1;
       paddingWentyIan = const EdgeInsets.only(top: 0);
-      isLoadBgMain = true;
     });
     await Future.delayed(const Duration(milliseconds: 300));
     setState(() {
@@ -1072,39 +1072,59 @@ class AmplopModal extends StatelessWidget {
                   "Ian Ahmad P", "0526919856", 'assets/logo_bni.png', context),
             ],
           ),
-          const SizedBox(
-            height: 30,
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 30, bottom: 20),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-                color: AppColors.primaryDarkColor.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(16)),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  'Kirim hadiah ke alamat',
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 16,
-                    // color: AppColors.white,
+          InkWell(
+            onTap: () {
+              const address =
+                  'Perumahan Graha Cisait Blok A 22 No 15, RT 005 RW 006, Kec. Kragilan, Kab. Serang, Banten';
+              Clipboard.setData(const ClipboardData(text: address)).then((_) {
+                FToast().init(context).showToast(
+                    child: Container(
+                        padding: EdgeInsets.fromLTRB(16, 4, 16, 4),
+                        color: AppColors.textPrimary,
+                        child: const Text(
+                          'Alamat berhasil disalin',
+                          style: TextStyle(color: Colors.white),
+                        )));
+              });
+            },
+            child: Container(
+              margin: const EdgeInsets.only(top: 40, bottom: 20),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                  color: AppColors.primaryDarkColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(16)),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'Kirim hadiah ke alamat',
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 16,
+                      // color: AppColors.white,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Perumahan Graha Cisait Blok A 22 No 15, RT 005 RW 006, Kec. Kragilan, Kab. Serang, Banten',
-                  style: GoogleFonts.croissantOne(
-                    fontSize: 14,
-                    // color: AppColors.white,
+                  const SizedBox(
+                    height: 10,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+                  Text(
+                    'Perumahan Graha Cisait Blok A 22 No 15, RT 005 RW 006, Kec. Kragilan, Kab. Serang, Banten',
+                    style: GoogleFonts.croissantOne(
+                      fontSize: 14,
+                      // color: AppColors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  const Icon(
+                    Icons.copy,
+                    size: 16,
+                  )
+                ],
+              ),
             ),
           ),
           SizedBox(
@@ -1129,11 +1149,9 @@ class AmplopModal extends StatelessWidget {
           InkWell(
             onTap: () {
               Clipboard.setData(ClipboardData(text: number)).then((_) {
-                // ScaffoldMessenger.of(context).showSnackBar(
-                //     const SnackBar(content: Text("No. Rek berhasil disalin")));
                 FToast().init(context).showToast(
                     child: Container(
-                      padding: EdgeInsets.fromLTRB(16, 4, 16, 4),
+                        padding: EdgeInsets.fromLTRB(16, 4, 16, 4),
                         color: AppColors.textPrimary,
                         child: const Text(
                           'Nomor Rekeneing berhasil disalin',
