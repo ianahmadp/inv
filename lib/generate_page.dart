@@ -35,10 +35,9 @@ class _GeneratePageState extends State<GeneratePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Nama Lengkap',
+                'Nama Lengkap #1',
                 style: GoogleFonts.playfairDisplay(
                   fontSize: 12,
-                  color: AppColors.white,
                 ),
               ),
               const SizedBox(height: 5),

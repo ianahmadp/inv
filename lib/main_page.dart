@@ -600,7 +600,7 @@ class MempelaiView extends StatelessWidget {
             'Wenty Meliany',
             'putri dari',
             'Bpk. Sarno &\nIbu. Titik Lestari',
-            'assets/ava_wenty.png',
+            'assets/wenty.png',
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -617,7 +617,7 @@ class MempelaiView extends StatelessWidget {
             'Ian Ahmad Pramana',
             'putra dari',
             'Bpk. Edy Pramono &\nIbu. Juharini',
-            'assets/ava_ian.png',
+            'assets/ian.png',
           ),
           const SizedBox(
             height: 30,
