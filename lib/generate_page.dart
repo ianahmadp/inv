@@ -110,7 +110,7 @@ class _GeneratePageState extends State<GeneratePage> {
                     child: InkWell(
                       onTap: () {
                           final url =
-                              "${Uri.base.origin}/to/${nameController.text.replaceAll(' ', '%20')}";
+                              "${Uri.base.origin}#/to/${nameController.text.replaceAll(' ', '%20')}";
                           Clipboard.setData(ClipboardData(text: url)).then((_) {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(

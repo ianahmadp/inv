@@ -1,5 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -150,7 +152,7 @@ class _MainPageState extends State<MainPage> {
         image: !isLoadBgMain
             ? null
             : const DecorationImage(
-                image: AssetImage('assets/images/bg3.jpg'),
+                image: AssetImage('assets/bg3.jpg'),
                 fit: BoxFit.cover,
               ),
       ),
@@ -213,7 +215,7 @@ class _MainPageState extends State<MainPage> {
                 height: double.infinity,
                 width: double.infinity,
                 child: Image.asset(
-                  'assets/images/bg2.jpg',
+                  'assets/bg2.jpg',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -363,7 +365,7 @@ class _MainPageState extends State<MainPage> {
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/images/bg1.jpg'),
+          image: AssetImage('assets/bg1.jpg'),
           fit: BoxFit.cover,
         )),
         child: Stack(
@@ -598,7 +600,7 @@ class MempelaiView extends StatelessWidget {
             'Wenty Meliany',
             'putri dari',
             'Bpk. Sarno &\nIbu. Titik Lestari',
-            'assets/images/ava_wenty.png',
+            'assets/ava_wenty.png',
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -615,7 +617,7 @@ class MempelaiView extends StatelessWidget {
             'Ian Ahmad Pramana',
             'putra dari',
             'Bpk. Edy Pramono &\nIbu. Juharini',
-            'assets/images/ava_ian.png',
+            'assets/ava_ian.png',
           ),
           const SizedBox(
             height: 30,
@@ -1001,15 +1003,15 @@ class CovidView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Image.asset(
-                'assets/images/ic_cucitangan.png',
+                'assets/ic_cucitangan.png',
                 height: 80,
               ),
               Image.asset(
-                'assets/images/ic_pakaimasker.png',
+                'assets/ic_pakaimasker.png',
                 height: 80,
               ),
               Image.asset(
-                'assets/images/ic_jagajarak.png',
+                'assets/ic_jagajarak.png',
                 height: 80,
               ),
             ],
@@ -1019,15 +1021,15 @@ class CovidView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Image.asset(
-                'assets/images/ic_tidaksalaman.png',
+                'assets/ic_tidaksalaman.png',
                 height: 80,
               ),
               Image.asset(
-                'assets/images/ic_handsanitizer.png',
+                'assets/ic_handsanitizer.png',
                 height: 80,
               ),
               Image.asset(
-                'assets/images/ic_tidakberkerumun.png',
+                'assets/ic_tidakberkerumun.png',
                 height: 80,
               ),
             ],
@@ -1064,10 +1066,10 @@ class AmplopModal extends StatelessWidget {
           ),
           Row(
             children: [
+              _itemRekening("Wenty Meliany", "5875211568",
+                  'assets/logo_bca.png', context),
               _itemRekening(
-                  "Wenty Meliany", "5875211568", 'assets/images/logo_bca.png'),
-              _itemRekening(
-                  "Ian Ahmad P", "0526919856", 'assets/images/logo_bni.png'),
+                  "Ian Ahmad P", "0526919856", 'assets/logo_bni.png', context),
             ],
           ),
           const SizedBox(
@@ -1113,7 +1115,7 @@ class AmplopModal extends StatelessWidget {
     );
   }
 
-  Widget _itemRekening(String name, number, logoBank) {
+  Widget _itemRekening(String name, number, logoBank, BuildContext context) {
     return Expanded(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -1124,14 +1126,40 @@ class AmplopModal extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 8),
             child: Image.asset(logoBank),
           ),
-          Text(
-            number,
-            style: GoogleFonts.croissantOne(
-              fontSize: 16,
-              letterSpacing: 1.5,
-              // color: AppColors.white,
+          InkWell(
+            onTap: () {
+              Clipboard.setData(ClipboardData(text: number)).then((_) {
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(content: Text("No. Rek berhasil disalin")));
+                FToast().init(context).showToast(
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(16, 4, 16, 4),
+                        color: AppColors.textPrimary,
+                        child: const Text(
+                          'Nomor Rekeneing berhasil disalin',
+                          style: TextStyle(color: Colors.white),
+                        )));
+              });
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  number,
+                  style: GoogleFonts.croissantOne(
+                    fontSize: 16,
+                    letterSpacing: 1.5,
+                    // color: AppColors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(width: 4),
+                const Icon(
+                  Icons.copy,
+                  size: 16,
+                )
+              ],
             ),
-            textAlign: TextAlign.center,
           ),
           Text(
             'a/n',
