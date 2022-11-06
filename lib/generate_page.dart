@@ -98,7 +98,7 @@ class _GeneratePageState extends State<GeneratePage> {
                     "السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ \n\n"
                     "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, untuk menghadiri acara pernikahan kami. "
                     "Berikut tautan untuk info lengkap dari acara kami:\n\n"
-                    "${Uri.base.origin}inv/#/to/${nameController.text.replaceAll(' ', '%20')}\n\n"
+                    "${Uri.base.origin}/inv/#/to/${nameController.text.replaceAll(' ', '%20')}\n\n"
                     "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i, berkenan untuk hadir dan memberikan doa restu.\n\n"
                     "وَالسَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ\n"),
               ),
@@ -109,7 +109,7 @@ class _GeneratePageState extends State<GeneratePage> {
                     child: InkWell(
                       onTap: () {
                           final url =
-                              "${Uri.base.origin}inv/#/to/${nameController.text.replaceAll(' ', '%20')}";
+                              "${Uri.base.origin}/inv/#/to/${nameController.text.replaceAll(' ', '%20')}";
                           Clipboard.setData(ClipboardData(text: url)).then((_) {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
@@ -137,7 +137,7 @@ class _GeneratePageState extends State<GeneratePage> {
                             "السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ \n\n"
                             "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, untuk menghadiri acara pernikahan kami. "
                             "Berikut tautan untuk info lengkap dari acara kami:\n\n"
-                            "${Uri.base.origin}inv/#/to/${nameController.text.replaceAll(' ', '%20')}\n\n"
+                            "${Uri.base.origin}/inv/#/to/${nameController.text.replaceAll(' ', '%20')}\n\n"
                             "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i, berkenan untuk hadir dan memberikan doa restu.\n\n"
                             "وَالسَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ\n";
                           Clipboard.setData(ClipboardData(text: text)).then((_) {
