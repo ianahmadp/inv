@@ -20,7 +20,7 @@ class _GeneratePageState extends State<GeneratePage> {
       "*Ian*\n\n"
       "السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ \n"
       "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, untuk menghadiri acara pernikahan kami.\n"
-      "Berikut link untuk info lengkap dari acara kami:\n"
+      "Berikut tautan untuk info lengkap dari acara kami:\n"
       "https://berkesaninvitation.com/nizar-saras/?to=Ian\n"
       "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i, berkenan untuk hadir dan memberikan doa res.\n"
       "وَالسَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ\n";
@@ -35,7 +35,7 @@ class _GeneratePageState extends State<GeneratePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Nama Lengkap #1',
+                'Nama Lengkap',
                 style: GoogleFonts.playfairDisplay(
                   fontSize: 12,
                 ),
@@ -97,8 +97,8 @@ class _GeneratePageState extends State<GeneratePage> {
                     "*${nameController.text}*\n\n"
                     "السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ \n\n"
                     "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, untuk menghadiri acara pernikahan kami. "
-                    "Berikut link untuk info lengkap dari acara kami:\n\n"
-                    "${Uri.base.origin}#/to/${nameController.text.replaceAll(' ', '%20')}\n\n"
+                    "Berikut tautan untuk info lengkap dari acara kami:\n\n"
+                    "${Uri.base.origin}inv/#/to/${nameController.text.replaceAll(' ', '%20')}\n\n"
                     "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i, berkenan untuk hadir dan memberikan doa restu.\n\n"
                     "وَالسَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ\n"),
               ),
@@ -109,7 +109,7 @@ class _GeneratePageState extends State<GeneratePage> {
                     child: InkWell(
                       onTap: () {
                           final url =
-                              "${Uri.base.origin}#/to/${nameController.text.replaceAll(' ', '%20')}";
+                              "${Uri.base.origin}inv/#/to/${nameController.text.replaceAll(' ', '%20')}";
                           Clipboard.setData(ClipboardData(text: url)).then((_) {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
@@ -136,8 +136,8 @@ class _GeneratePageState extends State<GeneratePage> {
                             "*${nameController.text}*\n\n"
                             "السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ \n\n"
                             "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, untuk menghadiri acara pernikahan kami. "
-                            "Berikut link untuk info lengkap dari acara kami:\n\n"
-                            "${Uri.base.origin}#/to/${nameController.text.replaceAll(' ', '%20')}\n\n"
+                            "Berikut tautan untuk info lengkap dari acara kami:\n\n"
+                            "${Uri.base.origin}inv/#/to/${nameController.text.replaceAll(' ', '%20')}\n\n"
                             "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i, berkenan untuk hadir dan memberikan doa restu.\n\n"
                             "وَالسَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ\n";
                           Clipboard.setData(ClipboardData(text: text)).then((_) {

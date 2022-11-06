@@ -146,15 +146,14 @@ class _MainPageState extends State<MainPage> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      // color: AppColors.primaryDark2Color,
-      decoration: BoxDecoration(
-        color: AppColors.backgroundPrimary,
-        image: !isLoadBgMain
-            ? null
-            : const DecorationImage(
-                image: AssetImage('assets/bg3.jpg'),
-                fit: BoxFit.cover,
-              ),
+      decoration: const BoxDecoration(
+        color: AppColors.primaryDark2Color,
+        // image: !isLoadBgMain
+        //     ? null
+        //     : const DecorationImage(
+        //         image: AssetImage('assets/bg3.jpg'),
+        //         fit: BoxFit.cover,
+        //       ),
       ),
       child: SingleChildScrollView(
         child: Column(
