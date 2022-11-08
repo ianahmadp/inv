@@ -737,7 +737,7 @@ class TimeView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(child: _time('Akad Nikah', '14.00 - 15.00')),
-              Expanded(child: _time('Resepsi', '16.00 - 21.00')),
+              Expanded(child: _time('Resepsi', '16.00 - 20.00')),
             ],
           ),
           const SizedBox(
